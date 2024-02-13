@@ -1,6 +1,6 @@
 package parser
 
-import Utils "github.com/cremindes/whalelint/utils"
+import Utils "github.com/northwood-labs/whalelint/utils"
 
 func IsDebPackageManager(bin string) bool {
 	return Utils.EqualsEither(bin, []string{"apt-get", "apt", "snap"})

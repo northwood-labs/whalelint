@@ -8,8 +8,8 @@ import (
 	"github.com/moby/buildkit/frontend/dockerfile/parser"
 	"github.com/stretchr/testify/assert"
 
-	Parser "github.com/cremindes/whalelint/parser"
-	TestHelper "github.com/cremindes/whalelint/testhelper"
+	Parser "github.com/northwood-labs/whalelint/parser"
+	TestHelper "github.com/northwood-labs/whalelint/testhelper"
 )
 
 func TestRawDockerfileParser_IsInitialized(t *testing.T) {

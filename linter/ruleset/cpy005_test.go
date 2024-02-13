@@ -7,7 +7,7 @@ import (
 	"github.com/moby/buildkit/frontend/dockerfile/instructions"
 	"github.com/stretchr/testify/assert"
 
-	RuleSet "github.com/cremindes/whalelint/linter/ruleset"
+	RuleSet "github.com/northwood-labs/whalelint/linter/ruleset"
 )
 
 func TestValidateCpy005(t *testing.T) {
@@ -44,13 +44,13 @@ func TestValidateCpy005(t *testing.T) {
 			commandArgs := strings.Fields(testCase.CommandParam)
 			command := &instructions.CopyCommand{
 				SourcesAndDest: instructions.SourcesAndDest{
-					DestPath: commandArgs[len(commandArgs)-1],
-					SourcePaths: commandArgs[:len(commandArgs)-1],
+					DestPath:       commandArgs[len(commandArgs)-1],
+					SourcePaths:    commandArgs[:len(commandArgs)-1],
 					SourceContents: nil,
 				},
-				From:           "",
-				Chown:          "",
-				Chmod:          "",
+				From:  "",
+				Chown: "",
+				Chmod: "",
 			}
 
 			assert.Equal(t, testCase.IsViolation, RuleSet.ValidateCpy005(command).IsViolated())

@@ -3,7 +3,7 @@ package ruleset
 import (
 	"github.com/moby/buildkit/frontend/dockerfile/instructions"
 
-	Parser "github.com/cremindes/whalelint/parser"
+	Parser "github.com/northwood-labs/whalelint/parser"
 )
 
 var _ = NewRule("RUN007", "Use 'WORKDIR' to switch to a directory.", "", ValWarning, ValidateRun007)

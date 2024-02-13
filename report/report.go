@@ -13,7 +13,7 @@ import (
 	log "github.com/sirupsen/logrus"
 	"robpike.io/filter"
 
-	RuleSet "github.com/cremindes/whalelint/linter/ruleset"
+	RuleSet "github.com/northwood-labs/whalelint/linter/ruleset"
 )
 
 // PrintResultAsJSON prints lint rule violations to writer in JSON format.
@@ -103,7 +103,8 @@ func GroupFindings(findings []RuleSet.RuleValidationResult) (FindingsMap, bool) 
 // AssembleSummaryHeader prepares the one line short summary header.
 // Verbosity::short.
 func AssembleSummaryHeader(findingsMap FindingsMap, hasViolation bool, printOptions PrintOptions,
-	strBuilder *strings.Builder) {
+	strBuilder *strings.Builder,
+) {
 	// Header | Start
 	strBuilder.WriteString("WhaleLint summary: ")
 

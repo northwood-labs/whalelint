@@ -14,8 +14,8 @@ import (
 	log "github.com/sirupsen/logrus"
 	"gotest.tools/assert"
 
-	"github.com/cremindes/whalelint/cli"
-	TestHelper "github.com/cremindes/whalelint/testhelper"
+	"github.com/northwood-labs/whalelint/cli"
+	TestHelper "github.com/northwood-labs/whalelint/testhelper"
 )
 
 type StdBuffer struct {

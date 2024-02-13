@@ -9,7 +9,7 @@ import (
 	"github.com/moby/buildkit/frontend/dockerfile/parser"
 	"github.com/stretchr/testify/assert"
 
-	LSP "github.com/cremindes/whalelint/lsp"
+	LSP "github.com/northwood-labs/whalelint/lsp"
 )
 
 func TestOnTextOpen(t *testing.T) {

@@ -5,7 +5,7 @@ import (
 
 	"github.com/moby/buildkit/frontend/dockerfile/instructions"
 
-	Utils "github.com/cremindes/whalelint/utils"
+	Utils "github.com/northwood-labs/whalelint/utils"
 )
 
 var _ = NewRule("EXP001", "Expose a valid UNIX port.", "", ValError, ValidateExp001)

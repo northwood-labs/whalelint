@@ -5,7 +5,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	RuleSet "github.com/cremindes/whalelint/linter/ruleset"
+	RuleSet "github.com/northwood-labs/whalelint/linter/ruleset"
 )
 
 func TestValidateMtr001(t *testing.T) {

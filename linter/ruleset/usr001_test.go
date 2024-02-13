@@ -6,7 +6,7 @@ import (
 	"github.com/moby/buildkit/frontend/dockerfile/instructions"
 	"github.com/stretchr/testify/assert"
 
-	RuleSet "github.com/cremindes/whalelint/linter/ruleset"
+	RuleSet "github.com/northwood-labs/whalelint/linter/ruleset"
 )
 
 func TestValidateUsr001(t *testing.T) {
@@ -18,13 +18,13 @@ func TestValidateUsr001(t *testing.T) {
 		isViolation bool
 		name        string
 	}{
-		{userList: []string{"foo"},                isViolation: false, name: "One user foo."},
-		{userList: []string{"root"},               isViolation:  true, name: "One user root."},
-		{userList: []string{"foo", "bar"},         isViolation: false, name: "Two users, foo then bar."},
-		{userList: []string{"root", "bar"},        isViolation: false, name: "Two users, root then bar."},
-		{userList: []string{"foo", "root"},        isViolation:  true, name: "Two users, foo then root."},
+		{userList: []string{"foo"}, isViolation: false, name: "One user foo."},
+		{userList: []string{"root"}, isViolation: true, name: "One user root."},
+		{userList: []string{"foo", "bar"}, isViolation: false, name: "Two users, foo then bar."},
+		{userList: []string{"root", "bar"}, isViolation: false, name: "Two users, root then bar."},
+		{userList: []string{"foo", "root"}, isViolation: true, name: "Two users, foo then root."},
 		{userList: []string{"foo", "root", "bar"}, isViolation: false, name: "Three users, foo, root and then bar."},
-		{userList: []string{""},                   isViolation: false, name: "No user."},
+		{userList: []string{""}, isViolation: false, name: "No user."},
 	}
 
 	for _, testCase := range testCases {

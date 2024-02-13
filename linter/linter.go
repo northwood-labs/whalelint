@@ -4,7 +4,7 @@ import (
 	"github.com/moby/buildkit/frontend/dockerfile/instructions"
 	log "github.com/sirupsen/logrus"
 
-	RuleSet "github.com/cremindes/whalelint/linter/ruleset"
+	RuleSet "github.com/northwood-labs/whalelint/linter/ruleset"
 )
 
 var MainLinter Linter // nolint:gochecknoglobals

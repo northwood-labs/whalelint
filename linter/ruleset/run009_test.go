@@ -6,7 +6,7 @@ import (
 	"github.com/moby/buildkit/frontend/dockerfile/instructions"
 	"github.com/stretchr/testify/assert"
 
-	RuleSet "github.com/cremindes/whalelint/linter/ruleset"
+	RuleSet "github.com/northwood-labs/whalelint/linter/ruleset"
 )
 
 func TestValidateRun009(t *testing.T) {
@@ -20,7 +20,7 @@ func TestValidateRun009(t *testing.T) {
 		{commandStr: "apt-get -y install vim", isViolation: false},
 		{commandStr: "apt-get --yes install vim", isViolation: false},
 		{commandStr: "apt-get --assume-yes install vim", isViolation: false},
-		{commandStr: "apt-get install vim", isViolation:  true},
+		{commandStr: "apt-get install vim", isViolation: true},
 		{commandStr: "DEBIAN_FRONTEND=noninteractive apt-get update", isViolation: false},
 		{commandStr: "DEBIAN_FRONTEND=noninteractive apt     update", isViolation: false},
 		{commandStr: "apt-get update && apt-get install vim", isViolation: true},
@@ -36,7 +36,10 @@ func TestValidateRun009(t *testing.T) {
 			t.Parallel()
 
 			// assemble command
-			commandBody := instructions.ShellDependantCmdLine{CmdLine: []string{testCase.commandStr}, PrependShell: true}
+			commandBody := instructions.ShellDependantCmdLine{
+				CmdLine:      []string{testCase.commandStr},
+				PrependShell: true,
+			}
 			runCommandWithoutSudo := &instructions.RunCommand{ShellDependantCmdLine: commandBody}
 
 			// test validation rule

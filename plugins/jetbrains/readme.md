@@ -10,5 +10,5 @@ It provides real-time static analysis for Dockerfiles, identifying common mistak
 
 ## Links
 
-- [Lint rule docs](https://github.com/CreMindES/whalelint/blob/main/docs/rule/readme.md)
-- [WhaleLint GitHub page](https://github.com/CreMindES/whalelint)
+- [Lint rule docs](https://github.com/northwood-labs/whalelint/blob/main/docs/rule/readme.md)
+- [WhaleLint GitHub page](https://github.com/northwood-labs/whalelint)

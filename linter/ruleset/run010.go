@@ -3,8 +3,8 @@ package ruleset
 import (
 	"github.com/moby/buildkit/frontend/dockerfile/instructions"
 
-	Parser "github.com/cremindes/whalelint/parser"
-	Utils "github.com/cremindes/whalelint/utils"
+	Parser "github.com/northwood-labs/whalelint/parser"
+	Utils "github.com/northwood-labs/whalelint/utils"
 )
 
 var _ = NewRule("RUN010", "Pass --no-install-recommends to avoid installing unnecessary packages.", "",

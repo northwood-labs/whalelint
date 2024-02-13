@@ -1,4 +1,4 @@
-# <img width="22px" src="https://user-images.githubusercontent.com/5306361/110181582-6c807f80-7e0c-11eb-81c8-36d6a9c0db0b.png"> WhaleLint <img align="right" style="position: relative; top: 10px;" src="https://github.com/cremindes/whalelint/workflows/build/badge.svg" />
+# <img width="22px" src="https://user-images.githubusercontent.com/5306361/110181582-6c807f80-7e0c-11eb-81c8-36d6a9c0db0b.png"> WhaleLint <img align="right" style="position: relative; top: 10px;" src="https://github.com/northwood-labs/whalelint/workflows/build/badge.svg" />
 
 [![made-with-Go](https://img.shields.io/badge/Made%20with-Go-1f425f.svg)](http://golang.org)
 
@@ -9,7 +9,7 @@ Dockerfile linter written in Go.
 It provides static analysis for Dockerfiles, identifying common mistakes and promotes best practices.
 
 <p align="center">
-  <img width="500px" src="docs/illustration/illustration.svg"/> 
+  <img width="500px" src="docs/illustration/illustration.svg"/>
 </p>
 
 ## Sample output
@@ -30,22 +30,22 @@ Each Dockerfile AST element has a corresponding set of rules. Click on the pictu
 
 ### Roadmap
 
-| Feature |  | Status |
-|---|---|---|
-| Extendable ruleset|  | ![Done](https://img.shields.io/static/v1?label=&message=Done&color=Green) | 
-| CLI |  |![Done](https://img.shields.io/static/v1?label=&message=Done&color=Green)  |  |
-| Configurable Output | | ![Done](https://img.shields.io/static/v1?label=&message=Done&color=Green)
-| - JSON | ![Done](https://img.shields.io/static/v1?label=&message=Done&color=Green) |
-| - Colored Summary | ![Done](https://img.shields.io/static/v1?label=&message=Done&color=Green) |
-| Docker image | | ![Done](https://img.shields.io/static/v1?label=&message=Done&color=Green) |
-| Rule pass | | ![NotYetStarted](https://img.shields.io/static/v1?label=&message=NoYetStarted&color=lightgrey) |
-| - Per line | ![NotYetStarted](https://img.shields.io/static/v1?label=&message=NoYetStarted&color=lightgrey) |
-| - Config file | ![NotYetStarted](https://img.shields.io/static/v1?label=&message=NoYetStarted&color=lightgrey) |
-| Config file | | ![NotYetStarted](https://img.shields.io/static/v1?label=&message=NoYetStarted&color=lightgrey) |
-| - Rule profiles | ![NotYetStarted](https://img.shields.io/static/v1?label=&message=NoYetStarted&color=lightgrey) |
-| IDE plugins/extensions | | ![InProgress](https://img.shields.io/static/v1?label=&message=InProgress&color=blue)
-| - VSCode | ![PreviewRelease](https://img.shields.io/static/v1?label=&message=PreviewRelease&color=blue)
-| - JetBrains | ![PreviewRelease](https://img.shields.io/static/v1?label=&message=PreviewRelease&color=blue)
+| Feature                |                                                                                                | Status                                                                                         |
+|------------------------|------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------|
+| Extendable ruleset     |                                                                                                | ![Done](https://img.shields.io/static/v1?label=&message=Done&color=Green)                      |
+| CLI                    |                                                                                                | ![Done](https://img.shields.io/static/v1?label=&message=Done&color=Green)                      |
+| Configurable Output    |                                                                                                | ![Done](https://img.shields.io/static/v1?label=&message=Done&color=Green)                      |
+| - JSON                 | ![Done](https://img.shields.io/static/v1?label=&message=Done&color=Green)                      |                                                                                                |
+| - Colored Summary      | ![Done](https://img.shields.io/static/v1?label=&message=Done&color=Green)                      |                                                                                                |
+| Docker image           |                                                                                                | ![Done](https://img.shields.io/static/v1?label=&message=Done&color=Green)                      |
+| Rule pass              |                                                                                                | ![NotYetStarted](https://img.shields.io/static/v1?label=&message=NoYetStarted&color=lightgrey) |
+| - Per line             | ![NotYetStarted](https://img.shields.io/static/v1?label=&message=NoYetStarted&color=lightgrey) |                                                                                                |
+| - Config file          | ![NotYetStarted](https://img.shields.io/static/v1?label=&message=NoYetStarted&color=lightgrey) |                                                                                                |
+| Config file            |                                                                                                | ![NotYetStarted](https://img.shields.io/static/v1?label=&message=NoYetStarted&color=lightgrey) |
+| - Rule profiles        | ![NotYetStarted](https://img.shields.io/static/v1?label=&message=NoYetStarted&color=lightgrey) |                                                                                                |
+| IDE plugins/extensions |                                                                                                | ![InProgress](https://img.shields.io/static/v1?label=&message=InProgress&color=blue)           |
+| - VSCode               | ![PreviewRelease](https://img.shields.io/static/v1?label=&message=PreviewRelease&color=blue)   |                                                                                                |
+| - JetBrains            | ![PreviewRelease](https://img.shields.io/static/v1?label=&message=PreviewRelease&color=blue)   |                                                                                                |
 
 ### Design Decisions
 
@@ -81,7 +81,7 @@ docker run --rm -v $(pwd)/Dockerfile:/Dockerfile cremindes/whalelint:[tag] Docke
 
 ### VSCode
 
-[![Version](https://vsmarketplacebadge.apphb.com/version/tamasgbarna.whalelint.svg)](https://marketplace.visualstudio.com/items?itemName=tamasgbarna.whalelint) 
+[![Version](https://vsmarketplacebadge.apphb.com/version/tamasgbarna.whalelint.svg)](https://marketplace.visualstudio.com/items?itemName=tamasgbarna.whalelint)
 [![Installs](https://vsmarketplacebadge.apphb.com/installs-short/tamasgbarna.whalelint.svg)](https://marketplace.visualstudio.com/items?itemName=tamasgbarna.whalelint)
 
 <p align="center">

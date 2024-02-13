@@ -3,7 +3,7 @@ package ruleset
 import (
 	"github.com/moby/buildkit/frontend/dockerfile/instructions"
 
-	Parser "github.com/cremindes/whalelint/parser"
+	Parser "github.com/northwood-labs/whalelint/parser"
 )
 
 var _ = NewRule("RUN005", "Do not upgrade or dist-upgrade the base image", "", ValError, ValidateRun005)

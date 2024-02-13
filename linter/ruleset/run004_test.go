@@ -6,7 +6,7 @@ import (
 	"github.com/moby/buildkit/frontend/dockerfile/instructions"
 	"github.com/stretchr/testify/assert"
 
-	RuleSet "github.com/cremindes/whalelint/linter/ruleset"
+	RuleSet "github.com/northwood-labs/whalelint/linter/ruleset"
 )
 
 // TestValidateRun004 tests RUN command validation with and without "sudo".
@@ -19,6 +19,7 @@ import (
 //   - starts with sudo
 //   - has sudo somewhere in it after multiple environment variable assigment
 //   - has sudo in second command - TODO
+//
 // THEN this should
 //   - pass
 //   - fail

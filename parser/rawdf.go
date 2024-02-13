@@ -6,7 +6,7 @@ import (
 
 	"github.com/moby/buildkit/frontend/dockerfile/parser"
 
-	Utils "github.com/cremindes/whalelint/utils"
+	Utils "github.com/northwood-labs/whalelint/utils"
 )
 
 var RawParser RawDockerfileParser = RawDockerfileParser{rawStr: ""} // nolint:gochecknoglobals

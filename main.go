@@ -6,8 +6,8 @@ import (
 	"github.com/alecthomas/kong"
 	log "github.com/sirupsen/logrus"
 
-	CLI "github.com/cremindes/whalelint/cli"
-	RuleSet "github.com/cremindes/whalelint/linter/ruleset"
+	CLI "github.com/northwood-labs/whalelint/cli"
+	RuleSet "github.com/northwood-labs/whalelint/linter/ruleset"
 )
 
 func main() {

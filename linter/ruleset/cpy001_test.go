@@ -7,7 +7,7 @@ import (
 	"github.com/moby/buildkit/frontend/dockerfile/parser"
 	"github.com/stretchr/testify/assert"
 
-	RuleSet "github.com/cremindes/whalelint/linter/ruleset"
+	RuleSet "github.com/northwood-labs/whalelint/linter/ruleset"
 )
 
 type mockCopyNode struct {
@@ -30,7 +30,7 @@ func TestValidateCpy001(t *testing.T) {
 		{
 			IsViolation: false,
 			ExampleName: "Proper `COPY` command with 1 `--chmod` flag.",
-			CopyNode:    mockCopyNode{
+			CopyNode: mockCopyNode{
 				Original: "COPY --chmod=7780 src src2 dst/",
 				flags:    []string{"--chmod=7780"},
 				next:     []string{"src", "src2", "dst/"},
@@ -40,7 +40,7 @@ func TestValidateCpy001(t *testing.T) {
 		{
 			IsViolation: true,
 			ExampleName: "`COPY` command with 1 `-chmod` flag.",
-			CopyNode:    mockCopyNode{
+			CopyNode: mockCopyNode{
 				Original: "COPY -chmod=7780 src dst/",
 				flags:    []string{},
 				next:     []string{"-chmod=7780", "src", "dst/"},
@@ -50,7 +50,7 @@ func TestValidateCpy001(t *testing.T) {
 		{
 			IsViolation: true,
 			ExampleName: "`COPY` command with 1 `chmod` flag.",
-			CopyNode:    mockCopyNode{
+			CopyNode: mockCopyNode{
 				Original: "COPY chmod=7780 src dst/",
 				flags:    []string{},
 				next:     []string{"chmod=7780", "src", "dst/"},
@@ -60,7 +60,7 @@ func TestValidateCpy001(t *testing.T) {
 		{
 			IsViolation: true,
 			ExampleName: "`COPY` command with 1 `-chown` and 1 `-chmod` flag.",
-			CopyNode:    mockCopyNode{
+			CopyNode: mockCopyNode{
 				Original: "COPY -chown=user:user -chmod=7780 src dst/",
 				flags:    []string{},
 				next:     []string{"-chown=user:user", "-chmod=7780", "src", "dst/"},
@@ -70,7 +70,7 @@ func TestValidateCpy001(t *testing.T) {
 		{
 			IsViolation: false,
 			ExampleName: "Strange `COPY` command with 1 `--chmod` flag.",
-			CopyNode:    mockCopyNode{
+			CopyNode: mockCopyNode{
 				Original: "COPY --chmod=7780 chmod chmod.bak/",
 				flags:    []string{"--chmod=7780"},
 				next:     []string{"chmod", "chmod.bak"},
@@ -80,7 +80,7 @@ func TestValidateCpy001(t *testing.T) {
 		{
 			IsViolation: true,
 			ExampleName: "Strange `COPY` command with 1 `-chmod` flag.",
-			CopyNode:    mockCopyNode{
+			CopyNode: mockCopyNode{
 				Original: "COPY -chmod=7780 chmod chmod.bak/",
 				flags:    []string{},
 				next:     []string{"-chmod=7780", "chmod", "chmod.bak"},

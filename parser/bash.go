@@ -11,7 +11,7 @@ import (
 	"github.com/moby/buildkit/frontend/dockerfile/instructions"
 	log "github.com/sirupsen/logrus"
 
-	Utils "github.com/cremindes/whalelint/utils"
+	Utils "github.com/northwood-labs/whalelint/utils"
 )
 
 // BashCommandChain represents a chain of bash commands.
@@ -94,7 +94,8 @@ func (bashCommand *BashCommand) String() string {
 }
 
 func NewBashCommand(envVarList map[string]string, bin string, subCommand string, optionMap map[string]string,
-	argMap map[string]string, hasSudo bool, rawString string) BashCommand {
+	argMap map[string]string, hasSudo bool, rawString string,
+) BashCommand {
 	return BashCommand{
 		envVarList,
 		bin,

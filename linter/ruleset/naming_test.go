@@ -10,7 +10,7 @@ import (
 	"strings"
 	"testing"
 
-	RuleSet "github.com/cremindes/whalelint/linter/ruleset"
+	RuleSet "github.com/northwood-labs/whalelint/linter/ruleset"
 )
 
 // Test that file names, validation function names and rule names match.
@@ -147,16 +147,24 @@ func RemoveQuotes(str string) string {
 func (rncm *RuleNameCheckMap) update(key, filename,
 	validationFuncName,
 	ruleID,
-	validationFuncName2 string) {
-
+	validationFuncName2 string,
+) {
 	if _, ok := (*rncm)[key]; !ok {
 		(*rncm)[key] = &RuleNameCheck{}
 	}
 
-	if            filename != "" {(*rncm)[key].filename = filename}
-	if  validationFuncName != "" {(*rncm)[key].validationFuncName = validationFuncName}
-	if              ruleID != "" {(*rncm)[key].newRuleCall.ruleID = ruleID}
-	if validationFuncName2 != "" {(*rncm)[key].newRuleCall.validationFuncName = validationFuncName2}
+	if filename != "" {
+		(*rncm)[key].filename = filename
+	}
+	if validationFuncName != "" {
+		(*rncm)[key].validationFuncName = validationFuncName
+	}
+	if ruleID != "" {
+		(*rncm)[key].newRuleCall.ruleID = ruleID
+	}
+	if validationFuncName2 != "" {
+		(*rncm)[key].newRuleCall.validationFuncName = validationFuncName2
+	}
 }
 
 func filterAstNewRuleCall(decl ast.Decl) *ast.CallExpr {

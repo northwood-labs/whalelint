@@ -7,7 +7,6 @@ go 1.21
 require (
 	github.com/Masterminds/sprig v2.22.0+incompatible
 	github.com/alecthomas/kong v0.8.1
-	github.com/cremindes/whalelint v0.0.8
 	github.com/docker/docker v25.0.3+incompatible
 	github.com/dustin/go-humanize v1.0.1
 	github.com/fatih/color v1.16.0
@@ -25,6 +24,7 @@ require (
 	github.com/Masterminds/semver v1.5.0 // indirect
 	github.com/agext/levenshtein v1.2.3 // indirect
 	github.com/containerd/typeurl/v2 v2.1.1 // indirect
+	github.com/northwood-labs/whalelint v0.0.8 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/docker/go-connections v0.5.0 // indirect
 	github.com/docker/go-units v0.5.0 // indirect

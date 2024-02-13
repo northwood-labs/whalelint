@@ -7,7 +7,7 @@ import (
 	"github.com/moby/buildkit/frontend/dockerfile/instructions"
 	"github.com/stretchr/testify/assert"
 
-	RuleSet "github.com/cremindes/whalelint/linter/ruleset"
+	RuleSet "github.com/northwood-labs/whalelint/linter/ruleset"
 )
 
 func newMockRule() *RuleSet.Rule {
@@ -45,8 +45,8 @@ func TestRuleValidationResult_MarshalJSON(t *testing.T) {
 	// Note: there is no point in checking the validationFunc, as unmarshaling a unknown function cannot
 	//       provide the actual function body.
 	// nolint: gofmt, gofumpt, goimports
-	assert.Equal(t, referenceRuleValidationResult.RuleID(),      duplicateRuleValidationResult.RuleID())
-	assert.Equal(t, referenceRuleValidationResult.Severity(),    duplicateRuleValidationResult.Severity())
+	assert.Equal(t, referenceRuleValidationResult.RuleID(), duplicateRuleValidationResult.RuleID())
+	assert.Equal(t, referenceRuleValidationResult.Severity(), duplicateRuleValidationResult.Severity())
 	assert.Equal(t, referenceRuleValidationResult.Description(), duplicateRuleValidationResult.Description())
 
 	// Putting MockRule to both validation results, so all the other fields besides Rule can be checked in one go.
@@ -59,7 +59,7 @@ func TestRuleValidationResult_SetViolated(t *testing.T) { // nolint:funlen
 	t.Parallel()
 
 	mockRule := newMockRule()
-	mockLoc  := newMockLocation() // nolint: gofmt, gofumpt, goimports
+	mockLoc := newMockLocation() // nolint: gofmt, gofumpt, goimports
 
 	testCases := []struct {
 		ExampleName      string
@@ -165,8 +165,7 @@ func TestRuleValidationResult_SetLocation(t *testing.T) {
 	mockLoc := newMockLocation()
 	ruleValidationResult := RuleSet.NewRuleValidationResult(mockRule, false, "", mockLoc)
 
-	startLine, startChar, endLine, endChar :=
-		ruleValidationResult.Location().Start().LineNumber()+2,
+	startLine, startChar, endLine, endChar := ruleValidationResult.Location().Start().LineNumber()+2,
 		ruleValidationResult.Location().Start().CharNumber()+2,
 		ruleValidationResult.Location().End().LineNumber()+2,
 		ruleValidationResult.Location().End().CharNumber()+2
@@ -175,8 +174,8 @@ func TestRuleValidationResult_SetLocation(t *testing.T) {
 
 	assert.Equal(t, startLine, ruleValidationResult.Location().Start().LineNumber())
 	assert.Equal(t, startChar, ruleValidationResult.Location().Start().CharNumber())
-	assert.Equal(t,   endLine, ruleValidationResult.Location().End().LineNumber()) // nolint:gofmt,gofumpt,goimports
-	assert.Equal(t,   endChar, ruleValidationResult.Location().End().CharNumber())
+	assert.Equal(t, endLine, ruleValidationResult.Location().End().LineNumber()) // nolint:gofmt,gofumpt,goimports
+	assert.Equal(t, endChar, ruleValidationResult.Location().End().CharNumber())
 }
 
 func TestRuleValidationResult_SetLocationRangeFrom(t *testing.T) {
@@ -199,10 +198,10 @@ func TestRuleValidationResult_Message(t *testing.T) {
 	t.Parallel()
 
 	mockRule := newMockRule()
-	mockLoc  := newMockLocation()
+	mockLoc := newMockLocation()
 	mockMessage := "Fake Message"
 	ruleValidationResultWithoutMessage := RuleSet.NewRuleValidationResult(mockRule, false, "", mockLoc)
-	ruleValidationResultWithMessage    := RuleSet.NewRuleValidationResult(mockRule, false, mockMessage, mockLoc)
+	ruleValidationResultWithMessage := RuleSet.NewRuleValidationResult(mockRule, false, mockMessage, mockLoc)
 
 	assert.Equal(t, mockRule.Definition(), ruleValidationResultWithoutMessage.Message())
 	assert.Equal(t, mockMessage, ruleValidationResultWithMessage.Message())

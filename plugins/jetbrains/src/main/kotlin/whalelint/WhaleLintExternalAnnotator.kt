@@ -128,7 +128,7 @@ class WhaleLintExternalAnnotator : ExternalAnnotator<PsiFile, List<ValidationRes
 
                 @Throws(IncorrectOperationException::class)
                 override fun invoke(project: Project, editor: Editor, file: PsiFile) {
-                    browse("https://github.com/CreMindES/whalelint/tree/main/docs/rule/set/" +
+                    browse("https://github.com/northwood-labs/whalelint/tree/main/docs/rule/set/" +
                             "${issue.rule!!.ruleId!!.toLowerCase()}.md")
                 }
 

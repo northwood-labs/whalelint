@@ -8,5 +8,4 @@ It provides static analysis for Dockerfiles, identifying common mistakes and pro
 
 ## WhaleLint
 
-[WhaleLint GitHub page](https://github.com/CreMindES/whalelint)
-
+[WhaleLint GitHub page](https://github.com/northwood-labs/whalelint)

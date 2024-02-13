@@ -6,7 +6,7 @@ import (
 	"github.com/moby/buildkit/frontend/dockerfile/instructions"
 	"github.com/stretchr/testify/assert"
 
-	RuleSet "github.com/cremindes/whalelint/linter/ruleset"
+	RuleSet "github.com/northwood-labs/whalelint/linter/ruleset"
 )
 
 // nolint:funlen
@@ -31,7 +31,7 @@ func TestValidateCpy006(t *testing.T) {
                           COPY --from {{ .CopyFrom }}`,
 		},
 		{
-			IsViolation:  true, ExampleName: "2nd stage name is `foo`, copy from `foo`.",
+			IsViolation: true, ExampleName: "2nd stage name is `foo`, copy from `foo`.",
 			StageName: "foo", CopyFrom: "foo",
 			DocsContext: `FROM golang:1.15 as bar
                           RUN go build app
@@ -61,7 +61,6 @@ func TestValidateCpy006(t *testing.T) {
                           RUN go build app
                           FROM ubuntu:20.14
                           COPY --from {{ .CopyFrom }}`,
-
 		},
 		{
 			IsViolation: false, ExampleName: "1st stage name is foo, copy from `foo:1.2`.",
@@ -74,17 +73,16 @@ func TestValidateCpy006(t *testing.T) {
 		{
 			IsViolation: true,
 			ExampleName: "1st stage alias is `builder` and 2nd base image is `foo`, copy from `foo:latest`.",
-			StageName: "builder", StageBase: "foo", CopyFrom: "foo:latest",
+			StageName:   "builder", StageBase: "foo", CopyFrom: "foo:latest",
 			DocsContext: `FROM golang:1.15 as {{ .StageName }}
                           RUN go build app
                           FROM {{ .StageBase }}
                           COPY --from {{ .CopyFrom }}`,
-
 		},
 		{
 			IsViolation: true,
 			ExampleName: "1st stage alias is `builder` and 2nd base image is `foo:latest`, copy from `foo`.",
-			StageName: "builder", StageBase: "foo:latest", CopyFrom: "foo",
+			StageName:   "builder", StageBase: "foo:latest", CopyFrom: "foo",
 			DocsContext: `FROM golang:1.15 as {{ .StageName }}
                           RUN go build app
                           FROM {{ .StageBase }}
@@ -93,7 +91,7 @@ func TestValidateCpy006(t *testing.T) {
 		{
 			IsViolation: false,
 			ExampleName: "Simple COPY src dst",
-			StageName: "", StageBase: "foo:latest", CopyFrom: "",
+			StageName:   "", StageBase: "foo:latest", CopyFrom: "",
 			DocsContext: `FROM golang:1.15 as {{ .StageName }}
                           RUN go build app
                           FROM {{ .StageBase }}

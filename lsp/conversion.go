@@ -3,7 +3,7 @@ package lsp
 import (
 	Log "github.com/sirupsen/logrus"
 
-	RuleSet "github.com/cremindes/whalelint/linter/ruleset"
+	RuleSet "github.com/northwood-labs/whalelint/linter/ruleset"
 )
 
 // VSCodeRangeFromLocationRange converts RuleSet.LocationRange to VS Code's Range Go equivalent type.
@@ -14,11 +14,11 @@ func VSCodeRangeFromLocationRange(lr RuleSet.LocationRange) Range {
 	// nolint: gofmt,gofumpt,goimports
 	r := Range{
 		Start: Position{
-			Line:      float64(start.LineNumber()-1),
+			Line:      float64(start.LineNumber() - 1),
 			Character: float64(start.CharNumber()),
 		},
-		End:   Position{
-			Line:      float64(end.LineNumber()-1),
+		End: Position{
+			Line:      float64(end.LineNumber() - 1),
 			Character: float64(end.CharNumber()),
 		},
 	}

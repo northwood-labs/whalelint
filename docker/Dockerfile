@@ -1,8 +1,8 @@
 FROM golang:1.17 as goBuilder
 
-COPY . /go/src/github.com/CreMindES/whalelint/
+COPY . /go/src/github.com/northwood-labs/whalelint/
 
-WORKDIR /go/src/github.com/CreMindES/whalelint/
+WORKDIR /go/src/github.com/northwood-labs/whalelint/
 RUN CGO_ENABLED=0 go build -o /app/whalelint
 
 FROM hairyhenderson/upx:3.96 as upxBuilder
@@ -16,7 +16,7 @@ FROM scratch
 ARG gitCommitHash
 
 LABEL maintainer="Tamas Gabor Barna"
-LABEL source="https://github.com/CreMindES/whalelint"
+LABEL source="https://github.com/northwood-labs/whalelint"
 LABEL description="Dockerfile linter."
 LABEL revision=${gitCommitHash}
 

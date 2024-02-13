@@ -3,7 +3,7 @@ package ruleset
 import (
 	"github.com/moby/buildkit/frontend/dockerfile/instructions"
 
-	Utils "github.com/cremindes/whalelint/utils"
+	Utils "github.com/northwood-labs/whalelint/utils"
 )
 
 var _ = NewRule("CPY006", "COPY --from value should not be the same as the stage.", "", ValError,

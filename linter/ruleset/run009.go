@@ -4,8 +4,8 @@ import (
 	"github.com/moby/buildkit/frontend/dockerfile/instructions"
 	"github.com/moby/buildkit/frontend/dockerfile/parser"
 
-	Parser "github.com/cremindes/whalelint/parser"
-	Utils "github.com/cremindes/whalelint/utils"
+	Parser "github.com/northwood-labs/whalelint/parser"
+	Utils "github.com/northwood-labs/whalelint/utils"
 )
 
 var _ = NewRule("RUN009", "Pass assume yes flag to package manager in order to be headless.", "",

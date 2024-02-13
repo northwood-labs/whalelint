@@ -6,7 +6,7 @@ import (
 	"github.com/moby/buildkit/frontend/dockerfile/instructions"
 	"github.com/stretchr/testify/assert"
 
-	RuleSet "github.com/cremindes/whalelint/linter/ruleset"
+	RuleSet "github.com/northwood-labs/whalelint/linter/ruleset"
 )
 
 func TestValidateCpy002(t *testing.T) {
@@ -19,14 +19,22 @@ func TestValidateCpy002(t *testing.T) {
 		ExampleName string
 		DocsContext string
 	}{
-		{ChmodValue: "7440", IsViolation: false, ExampleName: "COPY with chmod=7440",
-			DocsContext: "FROM golang 1.15\nCOPY --chmod={{ .ChmodValue }} src dst"},
-		{ChmodValue: "644", IsViolation: false, ExampleName: "COPY with chmod=644",
-			DocsContext: "FROM golang 1.15\nCOPY --chmod={{ .ChmodValue }} src dst"},
-		{ChmodValue: "88", IsViolation:  true, ExampleName: "COPY with chmod=88",
-			DocsContext: "FROM golang 1.15\nCOPY --chmod={{ .ChmodValue }} src dst"},
-		{ChmodValue: "7780", IsViolation:  true, ExampleName: "COPY with chmod=7780",
-			DocsContext: "FROM golang 1.15\nCOPY --chmod={{ .ChmodValue }} src dst"},
+		{
+			ChmodValue: "7440", IsViolation: false, ExampleName: "COPY with chmod=7440",
+			DocsContext: "FROM golang 1.15\nCOPY --chmod={{ .ChmodValue }} src dst",
+		},
+		{
+			ChmodValue: "644", IsViolation: false, ExampleName: "COPY with chmod=644",
+			DocsContext: "FROM golang 1.15\nCOPY --chmod={{ .ChmodValue }} src dst",
+		},
+		{
+			ChmodValue: "88", IsViolation: true, ExampleName: "COPY with chmod=88",
+			DocsContext: "FROM golang 1.15\nCOPY --chmod={{ .ChmodValue }} src dst",
+		},
+		{
+			ChmodValue: "7780", IsViolation: true, ExampleName: "COPY with chmod=7780",
+			DocsContext: "FROM golang 1.15\nCOPY --chmod={{ .ChmodValue }} src dst",
+		},
 	}
 
 	RuleSet.RegisterTestCaseDocs("CPY002", testCases)

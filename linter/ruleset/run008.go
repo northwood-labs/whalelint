@@ -5,7 +5,7 @@ import (
 
 	"github.com/moby/buildkit/frontend/dockerfile/instructions"
 
-	Parser "github.com/cremindes/whalelint/parser"
+	Parser "github.com/northwood-labs/whalelint/parser"
 )
 
 var _ = NewRule("RUN008", "Prefer apt-get over apt as the latter does not have a stable CLI.", "", ValWarning,

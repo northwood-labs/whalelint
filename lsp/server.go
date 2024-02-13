@@ -17,10 +17,10 @@ import (
 	Log "github.com/sirupsen/logrus"
 	"robpike.io/filter"
 
-	Linter "github.com/cremindes/whalelint/linter"
-	RuleSet "github.com/cremindes/whalelint/linter/ruleset"
-	Parser "github.com/cremindes/whalelint/parser"
-	Utils "github.com/cremindes/whalelint/utils"
+	Linter "github.com/northwood-labs/whalelint/linter"
+	RuleSet "github.com/northwood-labs/whalelint/linter/ruleset"
+	Parser "github.com/northwood-labs/whalelint/parser"
+	Utils "github.com/northwood-labs/whalelint/utils"
 )
 
 type (
@@ -329,16 +329,16 @@ func Serve(port int) error {
 	// nolint:gofmt,gofumpt,goimports
 	MethodMap = MethodMapType{
 		"initialize": Initialize,
-		"shutdown"  : Shutdown,
+		"shutdown":   Shutdown,
 	}
 
 	// nolint:gofmt,gofumpt,goimports
 	notificationHandlerMap = NotificationHandlerMap{
-		"initialized"           : Initialized,
-		"textDocument/didOpen"  : OnTextOpen,
-		"textDocument/didClose" : Yay,
+		"initialized":            Initialized,
+		"textDocument/didOpen":   OnTextOpen,
+		"textDocument/didClose":  Yay,
 		"textDocument/didChange": onTextDocumentDidChange,
-		"textDocument/didSave"  : onTextDocumentDidSave,
+		"textDocument/didSave":   onTextDocumentDidSave,
 	}
 
 	serviceAddress := host + ":" + strconv.Itoa(port)

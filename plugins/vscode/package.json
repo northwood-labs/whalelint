@@ -22,10 +22,10 @@
     "lint",
     "linter"
   ],
-  "homepage": "https://github.com/cremindes/whalelint/blob/main/README.md",
+  "homepage": "https://github.com/northwood-labs/whalelint/blob/main/README.md",
   "repository": {
     "type": "git",
-    "url": "https://github.com/cremindes/whalelint"
+    "url": "https://github.com/northwood-labs/whalelint"
   },
   "activationEvents": [
     "workspaceContains:**/Dockerfile",

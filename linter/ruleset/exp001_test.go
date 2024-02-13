@@ -6,7 +6,7 @@ import (
 	"github.com/moby/buildkit/frontend/dockerfile/instructions"
 	"github.com/stretchr/testify/assert"
 
-	RuleSet "github.com/cremindes/whalelint/linter/ruleset"
+	RuleSet "github.com/northwood-labs/whalelint/linter/ruleset"
 )
 
 func TestValidateExp001(t *testing.T) {
@@ -26,31 +26,31 @@ func TestValidateExp001(t *testing.T) {
 			DocsContext: "FROM golang:1.15\nEXPOSE {{ .PortValue }}",
 		},
 		{
-			PortValue:   []string{"4242/tcp"}, IsViolation: false,
+			PortValue: []string{"4242/tcp"}, IsViolation: false,
 			ExampleName: "EXPOSE 4242/tcp", DocsContext: "FROM golang:1.15\nEXPOSE {{ .PortValue }}",
 		},
 		{
-			PortValue:   []string{"4242/udp"}, IsViolation: false,
+			PortValue: []string{"4242/udp"}, IsViolation: false,
 			ExampleName: "EXPOSE 4242/udp", DocsContext: "FROM golang:1.15\nEXPOSE {{ .PortValue }}",
 		},
 		{
-			PortValue:   []string{"4242/yyy"}, IsViolation: true,
+			PortValue: []string{"4242/yyy"}, IsViolation: true,
 			ExampleName: "EXPOSE 4242/yyy", DocsContext: "FROM golang:1.15\nEXPOSE {{ .PortValue }}",
 		},
 		{
-			PortValue:   []string{"4242:tcp"}, IsViolation: true,
+			PortValue: []string{"4242:tcp"}, IsViolation: true,
 			ExampleName: "EXPOSE 4242:tcp", DocsContext: "FROM golang:1.15\nEXPOSE {{ .PortValue }}",
 		},
 		{
-			PortValue:   []string{"4242", "4242/tcp", "4242/udp"}, IsViolation: false,
+			PortValue: []string{"4242", "4242/tcp", "4242/udp"}, IsViolation: false,
 			ExampleName: "EXPOSE 4242, 4242/tcp, 4242/udp", DocsContext: "FROM golang:1.15\nEXPOSE {{ .PortValue }}",
 		},
 		{
-			PortValue:   []string{"67999"}, IsViolation: true,
+			PortValue: []string{"67999"}, IsViolation: true,
 			ExampleName: "EXPOSE 67999", DocsContext: "FROM golang:1.15\nEXPOSE {{ .PortValue }}",
 		},
 		{
-			PortValue:   []string{"4242", "67999", "4242/udp" }, IsViolation: true,
+			PortValue: []string{"4242", "67999", "4242/udp"}, IsViolation: true,
 			ExampleName: "EXPOSE 4242, 67999, 4242/udp", DocsContext: "FROM golang:1.15\nEXPOSE {{ .PortValue }}",
 		},
 	}

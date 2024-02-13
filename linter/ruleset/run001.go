@@ -4,7 +4,7 @@ import (
 	"github.com/moby/buildkit/frontend/dockerfile/instructions"
 	log "github.com/sirupsen/logrus"
 
-	Parser "github.com/cremindes/whalelint/parser"
+	Parser "github.com/northwood-labs/whalelint/parser"
 )
 
 var _ = NewRule("RUN001", "Some bash commands make no sense in an ordinary Docker container.", "", ValWarning,

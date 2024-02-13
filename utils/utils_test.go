@@ -6,7 +6,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	Utils "github.com/cremindes/whalelint/utils"
+	Utils "github.com/northwood-labs/whalelint/utils"
 )
 
 // TestSplitBashChainLex tests the EqualsEither ability to find correctly whether str is part of strSlice.
@@ -18,8 +18,8 @@ import (
 // V |  Foo  |     | ["FooWithSuffix"]     | E |              | E | false
 // E |  Foo  |     | ["prefixedFoo"]       | N |              | N | false
 // N |  Foo  |     | ["foo"]               |   |              |   | false
-//   |  Foo  |     | ["bar", "Foo", "Bar"] |   |              |   |  true
 //
+//	|  Foo  |     | ["bar", "Foo", "Bar"] |   |              |   |  true
 func TestEqualsEither(t *testing.T) {
 	t.Parallel()
 
@@ -77,10 +77,11 @@ func TestEqualsEither(t *testing.T) {
 // V |  ""                       | E |       with        | false | E | "" - no change
 // E |  "   "                    | N |                   | false | N | " "
 // N |  "   "                    | N |                   |  true |   | ""
-//   |  "  a  "                  |   |                   | false |   | " a "
-//   |  "  a  "                  |   |                   |  true |   | "a"
-//   |  " Foo  bar foo    bar  " |   |                   | false |   | " Foo bar foo bar "
-//   |  " Foo  bar foo    bar  " |   |                   |  true |   | "Foo bar foo bar"
+//
+//	|  "  a  "                  |   |                   | false |   | " a "
+//	|  "  a  "                  |   |                   |  true |   | "a"
+//	|  " Foo  bar foo    bar  " |   |                   | false |   | " Foo bar foo bar "
+//	|  " Foo  bar foo    bar  " |   |                   |  true |   | "Foo bar foo bar"
 func TestRemoveExtraSpaces(t *testing.T) {
 	t.Parallel()
 
@@ -212,8 +213,9 @@ func TestSplitMulti(t *testing.T) {
 // V |  ["foo"]                      | ["bar"]        | E |                         | -1
 // E |  ["bar", "foo", "bar", "foo"] | ["foo"]        | N |                         |  1
 // N |  ["foo1", "foo", "bar"]       | ["bar", "foo"] |   |                         |  1
-//   |  ["foo1", "foo", "bar"]       | []             |   |                         | -1
-//   |  ["foo1", "foo", "bar"]       | [""]           |   |                         | -1
+//
+//	|  ["foo1", "foo", "bar"]       | []             |   |                         | -1
+//	|  ["foo1", "foo", "bar"]       | [""]           |   |                         | -1
 func TestFindIndexOfSliceElement(t *testing.T) {
 	t.Parallel()
 
@@ -326,7 +328,7 @@ func TestInsertIntoSlice(t *testing.T) {
 			newSlice, err := Utils.InsertIntoSlice(testCase.inSlice, testCase.inElement, testCase.inIndex)
 
 			assert.Equal(t, newSlice, testCase.expectedV)
-			assert.Equal(t,      err, testCase.expectedE)  // nolint:gofmt,gofumpt,goimports
+			assert.Equal(t, err, testCase.expectedE) // nolint:gofmt,gofumpt,goimports
 		})
 	}
 }
@@ -372,7 +374,7 @@ func TestSplitKeyValue(t *testing.T) {
 
 			key, value := Utils.SplitKeyValue(testCase.inStr, testCase.inRune)
 
-			assert.Equal(t,   key, testCase.expectedKey  ) // nolint:gofmt,gofumpt,goimports
+			assert.Equal(t, key, testCase.expectedKey) // nolint:gofmt,gofumpt,goimports
 			assert.Equal(t, value, testCase.expectedValue)
 		})
 	}
@@ -433,13 +435,13 @@ func TestIsUnixPortValid(t *testing.T) {
 		inPort  interface{}
 		isValid bool
 	}{
-		{inPort:  "4242", isValid:  true, name: "Port  4242 as string"},
-		{inPort:    4242, isValid:  true, name: "Port  4242 as int"   },
+		{inPort: "4242", isValid: true, name: "Port  4242 as string"},
+		{inPort: 4242, isValid: true, name: "Port  4242 as int"},
 		{inPort: "67000", isValid: false, name: "Port 67000 as string"},
-		{inPort:   67000, isValid: false, name: "Port 67000 as int"   },
+		{inPort: 67000, isValid: false, name: "Port 67000 as int"},
 		{inPort: "a6700", isValid: false, name: "Port a6700 as string"},
-		{inPort: " 6700", isValid:  true, name: "Port \" 6700\" as string"},
-		{inPort:    true, isValid: false, name: "Port  true as bool"  },
+		{inPort: " 6700", isValid: true, name: "Port \" 6700\" as string"},
+		{inPort: true, isValid: false, name: "Port  true as bool"},
 	}
 
 	for _, testCase := range testCases {
@@ -463,15 +465,15 @@ func TestMatchDockerImageNames(t *testing.T) {
 		match bool
 		name  string
 	}{
-		{str1: "golang",        str2: "golang",        match:  true, name: "golang == golang"              },
-		{str1: "golang:latest", str2: "golang:latest", match:  true, name: "golang:latest == golang:latest"},
-		{str1: "golang:latest", str2: "golang",        match:  true, name: "golang:latest == golang"       },
-		{str1: "golang",        str2: "golang:latest", match:  true, name: "golang == golang:latest"       },
-		{str1: "golang",        str2: "python:latest", match: false, name: "golang == python:latest"       },
-		{str1: "golang:1.16",   str2: "golang:latest", match: false, name: "golang:1.16 == golang:latest"  },
-		{str1: "golang:1.16",   str2: "golang:latest", match: false, name: "golang:1.16 == golang:latest"  },
-		{str1: "golang:1.16",   str2: "golang:1.15.1", match: false, name: "golang:1.16 == golang:1.15.1"  },
-		{str1: "python:1.16",   str2: "golang:1.16",   match: false, name: "python:1.16 == golang:1.16"    },
+		{str1: "golang", str2: "golang", match: true, name: "golang == golang"},
+		{str1: "golang:latest", str2: "golang:latest", match: true, name: "golang:latest == golang:latest"},
+		{str1: "golang:latest", str2: "golang", match: true, name: "golang:latest == golang"},
+		{str1: "golang", str2: "golang:latest", match: true, name: "golang == golang:latest"},
+		{str1: "golang", str2: "python:latest", match: false, name: "golang == python:latest"},
+		{str1: "golang:1.16", str2: "golang:latest", match: false, name: "golang:1.16 == golang:latest"},
+		{str1: "golang:1.16", str2: "golang:latest", match: false, name: "golang:1.16 == golang:latest"},
+		{str1: "golang:1.16", str2: "golang:1.15.1", match: false, name: "golang:1.16 == golang:1.15.1"},
+		{str1: "python:1.16", str2: "golang:1.16", match: false, name: "python:1.16 == golang:1.16"},
 	}
 
 	for _, testCase := range testCases {

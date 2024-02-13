@@ -7,7 +7,7 @@ import (
 	"github.com/moby/buildkit/frontend/dockerfile/instructions"
 	"github.com/stretchr/testify/assert"
 
-	Parser "github.com/cremindes/whalelint/parser"
+	Parser "github.com/northwood-labs/whalelint/parser"
 )
 
 func TestBashCommand_OptionKeyList(t *testing.T) {
@@ -55,10 +55,10 @@ func TestBashCommand_OptionKeyList(t *testing.T) {
 // Scenario: Raw bash string needs to be parsed into a bashCommandList and a delimiterList.
 //
 // GIVEN |            raw string            | W | SplitBashChainLex  | T | the expectation is
-//       | "echo \"ok\""                    | H |     is called      | H | 1 bashCommand, nil delimiterSet
-//       | "echo \"ok\" && echo --version"  | E |                    | E | 2 bashCommand,  1  delimiter in set
-//       | "echo \"ok\" ; || date && date"  | N |                    | N | 4 bashCommand,  3  delimiter in set
 //
+//	| "echo \"ok\""                    | H |     is called      | H | 1 bashCommand, nil delimiterSet
+//	| "echo \"ok\" && echo --version"  | E |                    | E | 2 bashCommand,  1  delimiter in set
+//	| "echo \"ok\" ; || date && date"  | N |                    | N | 4 bashCommand,  3  delimiter in set
 func TestSplitBashChainLex(t *testing.T) {
 	t.Parallel()
 
@@ -69,8 +69,8 @@ func TestSplitBashChainLex(t *testing.T) {
 		length        int
 		delimiterList []string
 	}{
-		{"simple command" , "echo \"ok\""                  , 1, nil},
-		{"two commands"   , "echo \"ok\" && echo --version", 2, []string{"&&"}},
+		{"simple command", "echo \"ok\"", 1, nil},
+		{"two commands", "echo \"ok\" && echo --version", 2, []string{"&&"}},
 		{"complex command", "echo \"ok\" ; || date && date", 4, []string{";", "||", "&&"}},
 	}
 

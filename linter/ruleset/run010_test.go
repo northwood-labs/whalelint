@@ -6,7 +6,7 @@ import (
 	"github.com/moby/buildkit/frontend/dockerfile/instructions"
 	"github.com/stretchr/testify/assert"
 
-	RuleSet "github.com/cremindes/whalelint/linter/ruleset"
+	RuleSet "github.com/northwood-labs/whalelint/linter/ruleset"
 )
 
 func TestValidateRun010(t *testing.T) {
@@ -19,12 +19,16 @@ func TestValidateRun010(t *testing.T) {
 		IsViolation bool
 		DocsContext string
 	}{
-		{ExampleName: "", IsViolation: false, DocsContext: "`RUN` {{ .CommandStr }}",
-			CommandStr: "apt-get -y --no-install-recommends install vim" },
-		{ExampleName: "", IsViolation: false, DocsContext: "`RUN` {{ .CommandStr }}",
-			CommandStr: "apt-get --yes --no-install-recommends install vim"},
+		{
+			ExampleName: "", IsViolation: false, DocsContext: "`RUN` {{ .CommandStr }}",
+			CommandStr: "apt-get -y --no-install-recommends install vim",
+		},
+		{
+			ExampleName: "", IsViolation: false, DocsContext: "`RUN` {{ .CommandStr }}",
+			CommandStr: "apt-get --yes --no-install-recommends install vim",
+		},
 		{CommandStr: "apt-get --assume-yes --no-install-recommends install vim", IsViolation: false},
-		{CommandStr: "apt-get install -y vim", IsViolation:  true},
+		{CommandStr: "apt-get install -y vim", IsViolation: true},
 		{CommandStr: "DEBIAN_FRONTEND=noninteractive apt-get update", IsViolation: false},
 		{CommandStr: "DEBIAN_FRONTEND=noninteractive apt     update", IsViolation: false},
 		{CommandStr: "date", IsViolation: false},
@@ -38,7 +42,10 @@ func TestValidateRun010(t *testing.T) {
 			t.Parallel()
 
 			// assemble command
-			commandBody := instructions.ShellDependantCmdLine{CmdLine: []string{testCase.CommandStr}, PrependShell: true}
+			commandBody := instructions.ShellDependantCmdLine{
+				CmdLine:      []string{testCase.CommandStr},
+				PrependShell: true,
+			}
 			runCommandWithoutSudo := &instructions.RunCommand{ShellDependantCmdLine: commandBody}
 
 			// test validation rule

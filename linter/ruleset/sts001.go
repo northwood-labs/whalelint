@@ -3,7 +3,7 @@ package ruleset
 import (
 	"github.com/moby/buildkit/frontend/dockerfile/instructions"
 
-	"github.com/cremindes/whalelint/utils"
+	"github.com/northwood-labs/whalelint/utils"
 )
 
 // STS -> Stage Single.

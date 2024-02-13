@@ -5,7 +5,7 @@ import (
 
 	"github.com/moby/buildkit/frontend/dockerfile/instructions"
 
-	"github.com/cremindes/whalelint/parser"
+	"github.com/northwood-labs/whalelint/parser"
 )
 
 // TODO: revisit
