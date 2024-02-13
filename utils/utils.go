@@ -15,7 +15,6 @@ import (
 
 	"github.com/moby/buildkit/frontend/dockerfile/instructions"
 	"github.com/moby/buildkit/frontend/dockerfile/parser"
-	log "github.com/sirupsen/logrus"
 )
 
 /* Errors. */
@@ -199,11 +198,9 @@ func IsUnixPortValid(portParam interface{}) bool {
 		port, err = strconv.Atoi(portAssert)
 
 		if err != nil {
-			log.Debug("Cannot convert port string to int!")
 			return false // nolint:nlreturn
 		}
 	default:
-		log.Error("Unsupported portParam type.")
 		return false // nolint:nlreturn
 	}
 
@@ -217,7 +214,6 @@ func IsUnixPortValid(portParam interface{}) bool {
 /* File */
 
 func ReadFileContents(filePath string) (string, error) {
-	// TODO: migrate to 1.16 os.ReadFile
 	data, err := os.ReadFile(filePath)
 	if err != nil {
 		return "", fmt.Errorf("%w", err)
@@ -252,7 +248,6 @@ func GetDockerfileAst(filePathString string) ([]instructions.Stage, []instructio
 
 	stageList, metaArgs, err := instructions.Parse(dockerfile.AST)
 	if err != nil {
-		log.Debug("Cannot create Dockerfile AST from \"", filePath, "\".", err)
 		stageList, metaArgs = ParseDockerfileInstructionsSafely(dockerfile, fileHandle) // nolint:wsl
 	}
 
@@ -269,9 +264,11 @@ func GetDockerfileAst(filePathString string) ([]instructions.Stage, []instructio
 // - try again until there is
 //   - either a valid AST tree that can be parsed further
 //   - there is no more child, in which case it returns an empty stage.
+//
 // nolint:funlen
 func ParseDockerfileInstructionsSafely(dockerfile *parser.Result, fileHandle io.ReadSeeker) ([]instructions.Stage,
-	[]instructions.ArgCommand) {
+	[]instructions.ArgCommand,
+) {
 	if dockerfile == nil {
 		return []instructions.Stage{}, []instructions.ArgCommand{}
 	}
@@ -286,7 +283,6 @@ func ParseDockerfileInstructionsSafely(dockerfile *parser.Result, fileHandle io.
 		stageList, metaArgs, err = instructions.Parse(dockerfile.AST)
 		// Try to correct, if there is any error
 		if err != nil {
-			log.Trace("Cannot create Dockerfile AST", err)
 			// parse offending node number
 			regexpOffendingLine := regexp.MustCompile(" parse error line ([1-9]+[0-9]*):")
 			strSlice := regexpOffendingLine.FindStringSubmatch(err.Error())
@@ -294,7 +290,6 @@ func ParseDockerfileInstructionsSafely(dockerfile *parser.Result, fileHandle io.
 
 			_, errSeek := fileHandle.Seek(0, 0) // go back to the beginning of the file
 			if errSeek != nil {
-				log.Error(errSeek)
 				os.Exit(1)
 			}
 
@@ -308,14 +303,12 @@ func ParseDockerfileInstructionsSafely(dockerfile *parser.Result, fileHandle io.
 					break
 				}
 			}
-			log.Trace("Found offending line index: ", offendingLineIndex)
 
 			offendingLineStr = strings.TrimSuffix(offendingLineStr, "\n")
 			offendingAstIdx := -1
 
 			for i, child := range dockerfile.AST.Children {
 				if child.Original == offendingLineStr {
-					log.Trace("Matched offending line ", offendingLineStr, " to child ", i, ".")
 					offendingAstIdx = i
 				}
 			}
@@ -328,8 +321,6 @@ func ParseDockerfileInstructionsSafely(dockerfile *parser.Result, fileHandle io.
 		}
 
 		if len(dockerfile.AST.Children) == 0 {
-			log.Error("Fallback to Dockerfile AST correction was unsuccessful.", err)
-
 			return []instructions.Stage{}, []instructions.ArgCommand{}
 		}
 	}

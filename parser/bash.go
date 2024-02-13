@@ -9,7 +9,6 @@ import (
 	"github.com/docker/docker/api/types/strslice"
 	"github.com/google/shlex"
 	"github.com/moby/buildkit/frontend/dockerfile/instructions"
-	log "github.com/sirupsen/logrus"
 
 	Utils "github.com/northwood-labs/whalelint/utils"
 )
@@ -134,8 +133,6 @@ func ParseBashCommandChain(command interface{}) BashCommandChain {
 	}
 
 	if err != nil || len(lex) == 0 {
-		log.Error("Cannot lex bash command.", err)
-
 		return BashCommandChain{
 			BashCommandList: []BashCommand{ParseBashCommand([]string{})},
 			OperatorList:    nil,
@@ -217,7 +214,6 @@ func ParseBashCommand(bashCommandLex []string) BashCommand {
 	}
 
 	// options, everything that starts with a - or --
-	// TODO: option values
 	for _, lexItem := range bashCommandLex {
 		if strings.HasPrefix(lexItem, "-") {
 			bashCommand.optionMap[lexItem] = ""
@@ -281,8 +277,6 @@ func convertSemicolonsToLexItems(strList []string) []string {
 	for i, index := range indexList {
 		result, err = Utils.InsertIntoSlice(result, ";", index+i)
 		if err != nil {
-			log.Error("Cannot copy into slice.")
-
 			return nil
 		}
 	}

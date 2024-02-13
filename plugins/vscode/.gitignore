@@ -1,7 +1,0 @@
-*.png
-whalelint
-dist
-node_modules
-out
-target
-*.vsix
