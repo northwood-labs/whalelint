@@ -1,6 +1,6 @@
-module github.com/cremindes/whalelint
+module github.com/northwood-labs/whalelint
 
-go 1.17
+go 1.21
 
 require (
 	github.com/Masterminds/sprig v2.22.0+incompatible
